@@ -1,45 +1,28 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { changeAlphabet } from "./store/actions/alphabetAction";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const alphabet = useSelector((state) => state.alphabet.text);
+
+  const handleClick = (e) => {
+    dispatch(changeAlphabet(e.target.textContent));
+  };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <section>
+        <div className="flex">
+          <button onClick={handleClick}>A</button>
+          <button onClick={handleClick}>B</button>
+          <button onClick={handleClick}>C</button>
+          <button onClick={handleClick}>D</button>
+        </div>
+        <div>현재 선택된 알파벳은 {alphabet}</div>
+      </section>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
