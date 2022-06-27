@@ -1,10 +1,8 @@
-import counterReducer from "./slice/counterSlice";
 import { configureStore } from "@reduxjs/toolkit";
+import alphabetReducer from "./slice/alphabetSlice";
 
 const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+  reducer: { alphabet: alphabetReducer },
   devTools: true,
 });
 
